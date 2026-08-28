@@ -42,11 +42,9 @@
 
   .shell {
     max-width: 1440px;
-    margin: 32px auto;
+    min-height: 100vh;
+    margin: 0 auto;
     background: #fff;
-    border: 1px solid var(--line-soft);
-    border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(10, 42, 85, 0.12);
     overflow: hidden;
   }
 
@@ -415,7 +413,6 @@
 
   /* ================= TABLET ================= */
   @media (max-width: 1024px) {
-    .shell { margin: 0; border-radius: 0; border-left: none; border-right: none; box-shadow: none; }
     .topbar { padding: 12px 24px; }
     .masthead { gap: 16px; padding: 18px 24px; }
     .masthead__burger { display: flex; }
