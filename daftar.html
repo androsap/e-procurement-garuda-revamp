@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daftar Sebagai Penyedia — Garuda Indonesia e-Procurement</title>
+<meta name="description" content="Formulir pendaftaran calon penyedia Portal e-Procurement Garuda Indonesia.">
+<meta name="theme-color" content="#0A2A55">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; }
+  :root {
+    --navy: #0A2A55;
+    --navy-deep: #081C3B;
+    --ink: #152A4D;
+    --text: #33415C;
+    --muted: #556685;
+    --faint: #8494B3;
+    --line: #C3CEDE;
+    --line-soft: #DCE4F0;
+    --bg: #EEF2F8;
+    --panel: #ECEEF2;
+    --link: #1D4E8F;
+    --teal: #00707C;
+    --gold: #F4B400;
+    --accent-orange: #F5A623;
+    --info-bg: #1A62A5;
+    --error: #E23A2E;
+    --success: #1E7B34;
+  }
+  body {
+    background: var(--bg);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--link); }
+  a:hover { color: #12335E; }
+  button { font-family: inherit; }
+
+  .shell {
+    max-width: 1440px;
+    margin: 32px auto;
+    background: #fff;
+    border: 1px solid var(--line-soft);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(10, 42, 85, 0.12);
+    overflow: hidden;
+  }
+
+  /* ---------- top utility bar ---------- */
+  .topbar {
+    background: var(--navy);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 14px 36px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .topbar__time { letter-spacing: 0.02em; }
+  .langpick { position: relative; }
+  .langpick__btn {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .langpick__btn img { width: 16px; height: 16px; object-fit: cover; border-radius: 99px; }
+  .langpick__caret { font-size: 11px; }
+  .langpick__menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 260px;
+    background: #fff;
+    color: var(--ink);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(10, 42, 85, 0.25);
+    padding: 18px;
+    z-index: 60;
+  }
+  .langpick__menu[hidden] { display: none; }
+  .langpick__title { font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+  .langpick__opt {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #F6F8FC;
+    cursor: pointer;
+    font-size: 14px; font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .langpick__opt:last-child { margin-bottom: 0; }
+  .langpick__opt:hover { background: #EDF2FA; }
+  .langpick__opt img { width: 18px; height: 18px; object-fit: cover; border-radius: 99px; }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 24px 36px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .masthead__logo img { height: 40px; width: auto; object-fit: contain; }
+  .masthead__burger {
+    display: none;
+    margin-left: auto;
+    width: 44px; height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .masthead__burger span {
+    display: block;
+    width: 20px; height: 2px;
+    background: var(--navy);
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+  .masthead__burger.is-x span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .masthead__burger.is-x span:nth-child(2) { opacity: 0; }
+  .masthead__burger.is-x span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .masthead__nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .masthead__nav a { color: var(--text); text-decoration: none; }
+  .masthead__nav a:hover { color: var(--navy); }
+  .masthead__auth { margin-left: auto; display: flex; gap: 12px; }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
+  }
+  .btn--ghost { border: 1.5px solid var(--navy); background: #fff; color: var(--navy); }
+  .btn--solid { border: none; background: var(--navy); color: #fff; }
+
+  /* ---------- wizard ---------- */
+  .wz__header {
+    padding: 28px 40px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .wz__header h1 { font-size: 22px; font-weight: 800; color: var(--ink); }
+  .wz__body { padding: 32px 40px 40px; }
+
+  .wz-steps { display: flex; gap: 5px; margin-bottom: 32px; }
+  .wz-step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 18px 15px 26px;
+    background: #F1F4F9;
+    color: var(--faint);
+    font-weight: 700;
+    font-size: 15px;
+    clip-path: polygon(0 0, calc(100% - 17px) 0, 100% 50%, calc(100% - 17px) 100%, 0 100%, 17px 50%);
+  }
+  .wz-step:first-child { padding-left: 20px; clip-path: polygon(0 0, calc(100% - 17px) 0, 100% 50%, calc(100% - 17px) 100%, 0 100%); }
+  .wz-step:last-child { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 17px 50%); }
+  .wz-step.is-active { background: var(--navy); color: #fff; }
+  .wz-step.is-done { background: #DDE7F5; color: var(--navy); }
+  .wz-step__num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    background: #C3CEDE;
+    color: #fff;
+    font-size: 14px; font-weight: 800;
+    flex-shrink: 0;
+  }
+  .wz-step.is-active .wz-step__num { background: var(--accent-orange); }
+  .wz-step.is-done .wz-step__num { background: var(--navy); }
+
+  .wz-info {
+    background: var(--info-bg);
+    color: #fff;
+    border-radius: 12px;
+    padding: 26px 30px;
+    margin-bottom: 30px;
+  }
+  .wz-info__head {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 800; font-size: 16px;
+    margin-bottom: 14px;
+  }
+  .wz-info__head svg { width: 22px; height: 22px; flex-shrink: 0; }
+  .wz-info ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 9px; }
+  .wz-info li { font-size: 13.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.92); }
+
+  .wz-field, .wz-sub { display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: start; }
+  .wz-field {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .wz-field:first-of-type { padding-top: 4px; }
+  .wz-field--split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 40px;
+  }
+  .wz-field--split .wz-sub:nth-child(2) { grid-template-columns: 110px 1fr; }
+  .wz-field__label {
+    font-size: 14px;
+    color: var(--muted);
+    padding-top: 12px;
+  }
+  .wz-field__control { min-width: 0; }
+  .wz-hint { margin-top: 8px; font-size: 12.5px; color: var(--faint); }
+
+  .wz-input, .wz-select {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    background: #fff;
+  }
+  .wz-select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238494B3' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+  .wz-input:focus, .wz-select:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(10, 42, 85, 0.1);
+  }
+  textarea.wz-input { min-height: 84px; resize: vertical; line-height: 1.5; }
+
+  .wz-check { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--text); }
+  .wz-check input { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--navy); }
+
+  .wz-error {
+    display: none;
+    margin-top: 8px;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--error);
+  }
+  .wz-field.is-invalid > .wz-field__control > .wz-error,
+  .wz-sub.is-invalid > .wz-field__control > .wz-error { display: block; }
+  .wz-field.is-invalid .wz-input, .wz-field.is-invalid .wz-select,
+  .wz-sub.is-invalid .wz-input, .wz-sub.is-invalid .wz-select { border-color: var(--error); }
+
+  .wz-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 34px;
+  }
+  .btn-wz {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    background: none;
+  }
+  .btn-wz--back { background: #fff; border: 1.5px solid var(--navy); color: var(--navy); }
+  .btn-wz--back:hover { background: #F4F7FC; }
+  .btn-wz--next { background: var(--navy); color: #fff; }
+  .btn-wz--next:hover { background: #08213f; }
+
+  .wz-panel { display: none; }
+  .wz-panel.is-active { display: block; }
+
+  .wz-done { display: none; text-align: center; padding: 24px 0 8px; }
+  .wz-done.is-active { display: block; }
+  .wz-done__badge {
+    width: 76px; height: 76px;
+    border-radius: 50%;
+    background: #E6F4EA;
+    color: var(--success);
+    display: grid; place-items: center;
+    margin: 0 auto 20px;
+  }
+  .wz-done__badge svg { width: 40px; height: 40px; }
+  .wz-done h2 { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 10px; }
+  .wz-done p { max-width: 460px; margin: 0 auto 22px; color: var(--muted); font-size: 14px; }
+
+  /* ---------- footer ---------- */
+  .foot {
+    background: var(--navy-deep);
+    color: #9FB0CC;
+    padding: 28px 40px;
+    font-size: 13px;
+  }
+  .foot__row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center; }
+  .foot a { color: #9FB0CC; }
+  .foot__site { font-weight: 700; text-decoration: underline; }
+  .foot__powered { display: flex; align-items: center; gap: 8px; color: #7C8DAB; }
+  .foot__powered img { height: 20px; width: auto; object-fit: contain; }
+
+  /* ================= TABLET ================= */
+  @media (max-width: 1024px) {
+    .shell { margin: 0; border-radius: 0; border-left: none; border-right: none; box-shadow: none; }
+    .topbar { padding: 12px 24px; }
+    .masthead { gap: 16px; padding: 18px 24px; }
+    .masthead__burger { display: flex; }
+    .masthead__nav {
+      order: 3;
+      flex: 0 0 100%;
+      display: none;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      margin-top: 12px;
+    }
+    .masthead__nav.is-open { display: flex; }
+    .masthead__nav a { padding: 14px 4px; border-top: 1px solid var(--line-soft); }
+    .masthead__auth {
+      margin-left: 0;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line-soft);
+    }
+    .masthead__auth .btn { flex: 1; }
+
+    .wz__header { padding: 22px 24px; }
+    .wz__body { padding: 28px 24px 32px; }
+    .wz-step { font-size: 14px; padding: 13px 14px 13px 22px; gap: 9px; }
+    .wz-step__num { width: 26px; height: 26px; font-size: 13px; }
+    .wz-info { padding: 22px 24px; }
+    .wz-field--split { grid-template-columns: 1fr; gap: 20px; }
+    .wz-field--split .wz-sub, .wz-field--split .wz-sub:nth-child(2) { grid-template-columns: 200px 1fr; }
+  }
+
+  /* ================= MOBILE ================= */
+  @media (max-width: 640px) {
+    .topbar { padding: 10px 16px; gap: 10px; font-size: 11px; justify-content: space-between; }
+    .masthead { padding: 16px; }
+    .masthead__logo img { height: 32px; }
+
+    .wz__header { padding: 18px 16px; }
+    .wz__header h1 { font-size: 19px; }
+    .wz__body { padding: 22px 16px 28px; }
+
+    .wz-steps { flex-direction: column; gap: 8px; margin-bottom: 26px; }
+    .wz-step, .wz-step:first-child, .wz-step:last-child {
+      clip-path: none;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+
+    .wz-info { padding: 20px 18px; border-radius: 10px; }
+    .wz-info li { font-size: 13px; }
+
+    .wz-field, .wz-sub, .wz-field--split { grid-template-columns: 1fr; gap: 8px; }
+    .wz-field { padding: 16px 0; }
+    .wz-field--split { gap: 16px; }
+    .wz-field--split .wz-sub:nth-child(2) { grid-template-columns: 1fr; }
+    .wz-field__label { padding-top: 0; font-weight: 600; color: var(--ink); }
+
+    .wz-actions { margin-top: 26px; }
+    .btn-wz { padding: 12px 18px; }
+
+    .foot { padding: 24px 16px; }
+    .foot__row { flex-direction: column; text-align: center; gap: 10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .masthead__burger span { transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ===== top utility bar ===== -->
+  <div class="topbar">
+    <span class="topbar__time" id="liveDateTime"></span>
+    <div class="langpick">
+      <button class="langpick__btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false">
+        <img id="langFlag" src="img/flag-id.png" alt="">
+        <span id="langCode">ID</span>
+        <span class="langpick__caret" aria-hidden="true">&#9662;</span>
+      </button>
+      <div class="langpick__menu" id="langMenu" hidden>
+        <div class="langpick__title">Pilih bahasa</div>
+        <button class="langpick__opt" type="button" data-lang="en">
+          <img src="img/flag-en.png" alt=""><span>English</span>
+        </button>
+        <button class="langpick__opt" type="button" data-lang="id">
+          <img src="img/flag-id.png" alt=""><span>Bahasa Indonesia</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== masthead ===== -->
+  <header class="masthead">
+    <a class="masthead__logo" href="index.html" aria-label="Garuda Indonesia e-Procurement">
+      <img src="img/garuda-skyteam.png" alt="Garuda Indonesia">
+    </a>
+    <button class="masthead__burger" id="burger" type="button" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="masthead__nav" id="nav">
+      <a href="index.html">Home</a>
+      <a href="index.html">Announcement</a>
+      <a href="index.html">FAQ</a>
+      <a href="index.html">Policy</a>
+      <a href="index.html">Contact Us</a>
+      <div class="masthead__auth">
+        <a class="btn btn--ghost" href="index.html">Masuk Vendor</a>
+        <a class="btn btn--solid" href="daftar.html" aria-current="page">Daftar Vendor</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wz__header">
+      <h1>Daftar Sebagai Penyedia</h1>
+    </div>
+
+    <div class="wz__body">
+      <!-- progress -->
+      <div class="wz-steps" id="wzSteps">
+        <div class="wz-step is-active" data-step="1"><span class="wz-step__num">1</span><span>Data Personal</span></div>
+        <div class="wz-step" data-step="2"><span class="wz-step__num">2</span><span>Data Perusahaan</span></div>
+        <div class="wz-step" data-step="3"><span class="wz-step__num">3</span><span>Buat Password</span></div>
+      </div>
+
+      <form id="wzForm" novalidate>
+        <!-- ===== STEP 1 : Data Personal ===== -->
+        <div class="wz-panel is-active" data-step="1">
+          <div class="wz-info">
+            <div class="wz-info__head">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" fill="rgba(255,255,255,0.18)" stroke="#fff" stroke-width="1.6"/>
+                <circle cx="12" cy="7.5" r="1.3" fill="#fff"/>
+                <rect x="10.8" y="10.5" width="2.4" height="7" rx="1.2" fill="#fff"/>
+              </svg>
+              <span>Informasi</span>
+            </div>
+            <ol>
+              <li>Pendaftaran Calon Pelaku Usaha di Portal eProc tidak ada kaitannya dengan pendaftaran pada Aplikasi SPSE, sehingga tidak membuat Perusahaan Saudara/i dapat mengikuti tender/seleksi.</li>
+              <li>Jika ingin mengikuti tender/seleksi silakan kunjungi web aplikasi SPSE pada LPSE yang terdekat.</li>
+              <li>Pendaftaran Portal eProc hanya diperuntukkan bagi calon pelaku usaha (yang belum memiliki akun SPSE) yang ingin mengetahui informasi terkait Tender/Seleksi Pemerintah melalui Aplikasi LPSE Support.</li>
+              <li>Pastikan Anda telah mengisi data dengan benar. Jika masih salah, silakan kembali ke halaman sebelumnya.</li>
+              <li>Portal Eproc mendeteksi bahwa data yang Anda isikan di atas memiliki kesamaan dengan data User yang telah terdaftar di Portal Eproc seperti tertera di bawah ini.</li>
+              <li>Portal Eproc menggunakan alamat email sebagai identifikasi sehingga tidak boleh ada email yang digunakan lebih dari satu User.</li>
+            </ol>
+          </div>
+
+          <div class="wz-field">
+            <label class="wz-field__label" for="namaPerusahaan">Nama Perusahaan</label>
+            <div class="wz-field__control">
+              <input class="wz-input" id="namaPerusahaan" name="namaPerusahaan" type="text" placeholder="Contoh: PT ABC" data-required data-msg-empty="Nama Perusahaan harus diisi!">
+              <div class="wz-error">Nama Perusahaan harus diisi!</div>
+            </div>
+          </div>
+
+          <div class="wz-field wz-field--split">
+            <div class="wz-sub">
+              <label class="wz-field__label" for="bentukUsaha">Bentuk Usaha</label>
+              <div class="wz-field__control">
+                <select class="wz-select" id="bentukUsaha" name="bentukUsaha" data-required data-msg-empty="Bentuk Usaha harus dipilih!">
+                  <option value="">Pilih bentuk usaha</option>
+                  <option>PT</option>
+                  <option>CV</option>
+                  <option>Firma</option>
+                  <option>Perorangan</option>
+                  <option>Koperasi</option>
+                  <option>Yayasan</option>
+                  <option>BUMN</option>
+                  <option>BUMD</option>
+                </select>
+                <div class="wz-error">Bentuk Usaha harus dipilih!</div>
+              </div>
+            </div>
+            <div class="wz-sub">
+              <label class="wz-field__label" for="npwp">NPWP</label>
+              <div class="wz-field__control">
+                <input class="wz-input" id="npwp" name="npwp" type="text" inputmode="numeric" placeholder="12.333.333.3-333.333" data-required data-msg-empty="NPWP harus diisi!">
+                <div class="wz-error">NPWP harus diisi!</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wz-field">
+            <label class="wz-field__label" for="email">Email</label>
+            <div class="wz-field__control">
+              <input class="wz-input" id="email" name="email" type="email" placeholder="nama@perusahaan.com" data-required data-type="email" data-msg-empty="Email harus diisi!">
+              <div class="wz-error">Email harus diisi!</div>
+            </div>
+          </div>
+
+          <div class="wz-field">
+            <label class="wz-field__label" for="telepon">Nomor HP / Telpon</label>
+            <div class="wz-field__control">
+              <input class="wz-input" id="telepon" name="telepon" type="tel" inputmode="tel" placeholder="0812xxxxxxxx" data-required data-type="phone" data-msg-empty="Nomor HP / Telpon harus diisi!">
+              <div class="wz-error">Nomor HP / Telpon harus diisi!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== STEP 2 : Data Perusahaan ===== -->
+        <div class="wz-panel" data-step="2">
+          <div class="wz-field">
+            <label class="wz-field__label" for="alamat">Alamat Perusahaan</label>
+            <div class="wz-field__control">
+              <textarea class="wz-input" id="alamat" name="alamat" placeholder="Nama jalan, nomor, RT/RW, kelurahan, kecamatan" data-required data-msg-empty="Alamat Perusahaan harus diisi!"></textarea>
+              <div class="wz-error">Alamat Perusahaan harus diisi!</div>
+            </div>
+          </div>
+
+          <div class="wz-field wz-field--split">
+            <div class="wz-sub">
+              <label class="wz-field__label" for="provinsi">Provinsi</label>
+              <div class="wz-field__control">
+                <select class="wz-select" id="provinsi" name="provinsi" data-required data-msg-empty="Provinsi harus dipilih!">
+                  <option value="">Pilih provinsi</option>
+                  <option>DKI Jakarta</option>
+                  <option>Jawa Barat</option>
+                  <option>Jawa Tengah</option>
+                  <option>Jawa Timur</option>
+                  <option>Banten</option>
+                  <option>DI Yogyakarta</option>
+                  <option>Bali</option>
+                  <option>Sumatera Utara</option>
+                  <option>Sulawesi Selatan</option>
+                  <option>Kalimantan Timur</option>
+                </select>
+                <div class="wz-error">Provinsi harus dipilih!</div>
+              </div>
+            </div>
+            <div class="wz-sub">
+              <label class="wz-field__label" for="kota">Kota / Kabupaten</label>
+              <div class="wz-field__control">
+                <input class="wz-input" id="kota" name="kota" type="text" placeholder="Contoh: Jakarta Selatan" data-required data-msg-empty="Kota / Kabupaten harus diisi!">
+                <div class="wz-error">Kota / Kabupaten harus diisi!</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wz-field wz-field--split">
+            <div class="wz-sub">
+              <label class="wz-field__label" for="kodePos">Kode Pos</label>
+              <div class="wz-field__control">
+                <input class="wz-input" id="kodePos" name="kodePos" type="text" inputmode="numeric" maxlength="5" placeholder="12345" data-required data-msg-empty="Kode Pos harus diisi!">
+                <div class="wz-error">Kode Pos harus diisi!</div>
+              </div>
+            </div>
+            <div class="wz-sub">
+              <label class="wz-field__label" for="telKantor">Telepon Kantor</label>
+              <div class="wz-field__control">
+                <input class="wz-input" id="telKantor" name="telKantor" type="tel" inputmode="tel" placeholder="021xxxxxxx" data-required data-type="phone" data-msg-empty="Telepon Kantor harus diisi!">
+                <div class="wz-error">Telepon Kantor harus diisi!</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wz-field">
+            <label class="wz-field__label" for="website">Website Perusahaan</label>
+            <div class="wz-field__control">
+              <input class="wz-input" id="website" name="website" type="text" placeholder="https://perusahaan.com (opsional)">
+              <div class="wz-hint">Opsional — isi jika perusahaan Anda memiliki situs resmi.</div>
+              <div class="wz-error"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== STEP 3 : Buat Password ===== -->
+        <div class="wz-panel" data-step="3">
+          <div class="wz-field">
+            <label class="wz-field__label" for="password">Kata Sandi</label>
+            <div class="wz-field__control">
+              <input class="wz-input" id="password" name="password" type="password" placeholder="Minimal 8 karakter" data-required data-type="password" data-msg-empty="Kata Sandi harus diisi!">
+              <div class="wz-hint">Gunakan kombinasi huruf besar, huruf kecil, dan angka.</div>
+              <div class="wz-error">Kata Sandi harus diisi!</div>
+            </div>
+          </div>
+
+          <div class="wz-field">
+            <label class="wz-field__label" for="passwordConfirm">Konfirmasi Kata Sandi</label>
+            <div class="wz-field__control">
+              <input class="wz-input" id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Ulangi kata sandi" data-required data-match="password" data-msg-empty="Konfirmasi Kata Sandi harus diisi!">
+              <div class="wz-error">Konfirmasi Kata Sandi harus diisi!</div>
+            </div>
+          </div>
+
+          <div class="wz-field">
+            <span class="wz-field__label">Persetujuan</span>
+            <div class="wz-field__control">
+              <label class="wz-check">
+                <input type="checkbox" id="setuju" name="setuju" data-required data-msg-empty="Anda harus menyetujui Syarat &amp; Ketentuan.">
+                <span>Saya menyatakan data yang diisi benar dan menyetujui <a href="index.html">Syarat &amp; Ketentuan</a> serta <a href="index.html">Kebijakan Privasi</a> Portal e-Procurement Garuda Indonesia.</span>
+              </label>
+              <div class="wz-error">Anda harus menyetujui Syarat &amp; Ketentuan.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== success ===== -->
+        <div class="wz-done" id="wzDone">
+          <div class="wz-done__badge">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 12.5l5 5 11-11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h2>Pendaftaran Berhasil Dikirim</h2>
+          <p>Terima kasih. Kami telah mengirim tautan verifikasi ke alamat email yang Anda daftarkan. Silakan periksa kotak masuk (atau folder spam) untuk mengaktifkan akun.</p>
+          <a class="btn-wz btn-wz--next" href="index.html">Kembali ke Beranda</a>
+        </div>
+
+        <div class="wz-actions" id="wzActions">
+          <button class="btn-wz btn-wz--back" id="wzBack" type="button"><span aria-hidden="true">&#8592;</span><span class="btn-wz__label">KEMBALI</span></button>
+          <button class="btn-wz btn-wz--next" id="wzNext" type="button"><span class="btn-wz__label">BERIKUTNYA</span><span aria-hidden="true">&#8594;</span></button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- ===== footer ===== -->
+  <footer class="foot">
+    <div class="foot__row">
+      <span class="foot__site"><a href="https://garuda-indonesia.com">garuda-indonesia.com</a></span>
+      <span>copyrights &copy; 2026. Seluruh hak cipta dilindungi.</span>
+      <span class="foot__powered">Powered by <img src="img/amala-white.png" alt="Asyst"></span>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var TOTAL = 3;
+  var step = 1;
+
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $all = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* ---------- live clock ---------- */
+  function tickClock() {
+    $("#liveDateTime").textContent = new Date().toLocaleString("id-ID", {
+      weekday: "long", day: "2-digit", month: "long", year: "numeric",
+      hour: "2-digit", minute: "2-digit", second: "2-digit"
+    });
+  }
+
+  /* ---------- language dropdown (cosmetic) ---------- */
+  function closeLang() {
+    $("#langMenu").hidden = true;
+    $("#langBtn").setAttribute("aria-expanded", "false");
+  }
+  $("#langBtn").addEventListener("click", function (e) {
+    e.stopPropagation();
+    var open = $("#langMenu").hidden;
+    $("#langMenu").hidden = !open;
+    this.setAttribute("aria-expanded", String(open));
+  });
+  $("#langMenu").addEventListener("click", function (e) { e.stopPropagation(); });
+  $all(".langpick__opt").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var lang = this.getAttribute("data-lang");
+      $("#langCode").textContent = lang.toUpperCase();
+      $("#langFlag").src = lang === "en" ? "img/flag-en.png" : "img/flag-id.png";
+      closeLang();
+    });
+  });
+  document.addEventListener("click", closeLang);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeLang(); closeMenu(); } });
+
+  /* ---------- mobile nav ---------- */
+  function closeMenu() {
+    $("#nav").classList.remove("is-open");
+    $("#burger").classList.remove("is-x");
+    $("#burger").setAttribute("aria-expanded", "false");
+  }
+  $("#burger").addEventListener("click", function () {
+    var open = !$("#nav").classList.contains("is-open");
+    $("#nav").classList.toggle("is-open", open);
+    this.classList.toggle("is-x", open);
+    this.setAttribute("aria-expanded", String(open));
+  });
+
+  /* ---------- wizard ---------- */
+  function showStep(n) {
+    step = n;
+    $all(".wz-panel").forEach(function (p) {
+      p.classList.toggle("is-active", Number(p.dataset.step) === n);
+    });
+    $all(".wz-step").forEach(function (s) {
+      var i = Number(s.dataset.step);
+      s.classList.toggle("is-active", i === n);
+      s.classList.toggle("is-done", i < n);
+    });
+    $("#wzNext").querySelector(".btn-wz__label").textContent = n === TOTAL ? "DAFTAR" : "BERIKUTNYA";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function validatePanel(n) {
+    var panel = $('.wz-panel[data-step="' + n + '"]');
+    var ok = true;
+    $all("input, select, textarea", panel).forEach(function (inp) {
+      var box = inp.closest(".wz-sub") || inp.closest(".wz-field");
+      if (!box) return;
+      var errEl = box.querySelector(".wz-error");
+      var val = (inp.value || "").trim();
+      var fail = false;
+      var msg = inp.getAttribute("data-msg-empty") || "Wajib diisi!";
+
+      if (inp.type === "checkbox") {
+        if (inp.hasAttribute("data-required") && !inp.checked) fail = true;
+      } else if (inp.hasAttribute("data-required") && !val) {
+        fail = true;
+      } else if (val && inp.dataset.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        fail = true; msg = "Format email tidak valid!";
+      } else if (val && inp.dataset.type === "phone" && !/^[0-9()+\-\s]{8,20}$/.test(val)) {
+        fail = true; msg = "Nomor tidak valid (8–20 digit).";
+      } else if (val && inp.dataset.type === "password" && val.length < 8) {
+        fail = true; msg = "Kata Sandi minimal 8 karakter!";
+      }
+
+      if (!fail && inp.dataset.match) {
+        var other = panel.querySelector("#" + inp.dataset.match);
+        if (other && val !== (other.value || "").trim()) { fail = true; msg = "Konfirmasi Kata Sandi tidak sama!"; }
+      }
+
+      box.classList.toggle("is-invalid", fail);
+      if (fail) {
+        ok = false;
+        if (errEl) errEl.textContent = msg;
+      }
+    });
+    return ok;
+  }
+
+  function submitForm() {
+    $("#wzSteps").querySelectorAll(".wz-step").forEach(function (s) {
+      s.classList.remove("is-active");
+      s.classList.add("is-done");
+    });
+    $all(".wz-panel").forEach(function (p) { p.classList.remove("is-active"); });
+    $("#wzActions").style.display = "none";
+    $("#wzDone").classList.add("is-active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  $("#wzNext").addEventListener("click", function () {
+    if (!validatePanel(step)) return;
+    if (step < TOTAL) showStep(step + 1);
+    else submitForm();
+  });
+  $("#wzBack").addEventListener("click", function () {
+    if (step > 1) showStep(step - 1);
+    else window.location.href = "index.html";
+  });
+
+  // clear a field's error as soon as the user corrects it
+  $("#wzForm").addEventListener("input", function (e) {
+    var box = e.target.closest(".wz-sub") || e.target.closest(".wz-field");
+    if (box && box.classList.contains("is-invalid")) box.classList.remove("is-invalid");
+  });
+  $("#wzForm").addEventListener("change", function (e) {
+    if (e.target.type !== "checkbox") return;
+    var box = e.target.closest(".wz-field");
+    if (box && box.classList.contains("is-invalid")) box.classList.remove("is-invalid");
+  });
+
+  tickClock();
+  setInterval(tickClock, 1000);
+  showStep(1);
+})();
+</script>
+</body>
+</html>

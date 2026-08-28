@@ -155,12 +155,15 @@
   .masthead__auth { margin-left: auto; display: flex; gap: 12px; }
 
   .btn {
+    display: inline-block;
     padding: 10px 20px;
     border-radius: 8px;
     font-weight: 700;
     font-size: 14px;
     cursor: pointer;
     white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
   }
   .btn--ghost { border: 1.5px solid var(--navy); background: #fff; color: var(--navy); }
   .btn--solid { border: none; background: var(--navy); color: #fff; }
@@ -534,7 +537,7 @@
       <a href="#">Contact Us</a>
       <div class="masthead__auth">
         <button class="btn btn--ghost" type="button" data-i18n="cta_login"></button>
-        <button class="btn btn--solid" type="button" data-i18n="cta_register"></button>
+        <a class="btn btn--solid" href="daftar.html" data-i18n="cta_register"></a>
       </div>
     </nav>
   </header>
