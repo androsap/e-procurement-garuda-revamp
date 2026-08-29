@@ -27,6 +27,8 @@
     --teal: #00707C;
     --gold: #F4B400;
     --danger: #B3261E;
+    /* full-bleed band, content centred within 1280px */
+    --pad-inline: max(40px, calc((100% - 1280px) / 2));
   }
   body {
     background: var(--bg);
@@ -41,9 +43,8 @@
   button { font-family: inherit; }
 
   .shell {
-    max-width: 1440px;
+    width: 100%;
     min-height: 100vh;
-    margin: 0 auto;
     background: #fff;
     overflow: hidden;
   }
@@ -56,7 +57,7 @@
     align-items: center;
     justify-content: flex-end;
     gap: 16px;
-    padding: 14px 36px;
+    padding: 14px var(--pad-inline);
     font-size: 12px;
     font-weight: 600;
   }
@@ -111,7 +112,7 @@
     display: flex;
     align-items: center;
     gap: 40px;
-    padding: 24px 36px;
+    padding: 24px var(--pad-inline);
     border-bottom: 1px solid var(--line);
     flex-wrap: wrap;
   }
@@ -169,7 +170,7 @@
   /* ---------- hero ---------- */
   .hero {
     position: relative;
-    margin: 40px 40px 0;
+    margin: 40px var(--pad-inline) 0;
     border-radius: 16px;
     overflow: hidden;
     aspect-ratio: 21 / 9;
@@ -221,7 +222,7 @@
   .search {
     position: relative;
     z-index: 3;
-    margin: -48px 84px 0;
+    margin: -48px calc(var(--pad-inline) + 44px) 0;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 14px;
@@ -255,7 +256,7 @@
   .search__btn:hover { background: #005b65; }
 
   /* ---------- generic block ---------- */
-  .block { padding: 48px 40px; }
+  .block { padding: 48px var(--pad-inline); }
   .block--alt { background: var(--panel); padding-top: 56px; }
   .block__title {
     font-size: 24px;
@@ -396,7 +397,7 @@
   .foot {
     background: var(--navy-deep);
     color: #9FB0CC;
-    padding: 28px 40px;
+    padding: 28px var(--pad-inline);
     font-size: 13px;
   }
   .foot__row {
@@ -413,8 +414,9 @@
 
   /* ================= TABLET ================= */
   @media (max-width: 1024px) {
-    .topbar { padding: 12px 24px; }
-    .masthead { gap: 16px; padding: 18px 24px; }
+    :root { --pad-inline: max(24px, calc((100% - 1280px) / 2)); }
+    .topbar { padding: 12px var(--pad-inline); }
+    .masthead { gap: 16px; padding: 18px var(--pad-inline); }
     .masthead__burger { display: flex; }
     .masthead__nav {
       order: 3;
@@ -435,13 +437,13 @@
     }
     .masthead__auth .btn { flex: 1; text-align: center; }
 
-    .hero { margin: 24px 24px 0; aspect-ratio: 16 / 9; }
-    .search { margin: -40px 24px 0; flex-wrap: wrap; }
+    .hero { margin: 24px var(--pad-inline) 0; aspect-ratio: 16 / 9; }
+    .search { margin: -40px var(--pad-inline) 0; flex-wrap: wrap; }
     .search__input { flex: 1 1 100%; }
     .search__select { flex: 1 1 calc(50% - 6px); }
     .search__btn { flex: 1 1 100%; }
 
-    .block { padding: 40px 24px; }
+    .block { padding: 40px var(--pad-inline); }
     .block--alt { padding-top: 44px; }
     .block__title { margin-bottom: 28px; }
 
@@ -450,23 +452,24 @@
 
   /* ================= MOBILE ================= */
   @media (max-width: 640px) {
+    :root { --pad-inline: max(16px, calc((100% - 1280px) / 2)); }
     .topbar {
-      padding: 10px 16px;
+      padding: 10px var(--pad-inline);
       gap: 10px;
       font-size: 11px;
       justify-content: space-between;
     }
-    .masthead { padding: 16px; }
+    .masthead { padding: 16px var(--pad-inline); }
     .masthead__logo img { height: 32px; }
 
-    .hero { margin: 16px 16px 0; aspect-ratio: 16 / 9; border-radius: 12px; }
+    .hero { margin: 16px var(--pad-inline) 0; aspect-ratio: 16 / 9; border-radius: 12px; }
     .hero__nav { width: 36px; height: 36px; font-size: 16px; }
     .hero__nav--prev { left: 10px; }
     .hero__nav--next { right: 10px; }
     .hero__dots { bottom: 12px; }
 
     .search {
-      margin: -24px 16px 0;
+      margin: -24px var(--pad-inline) 0;
       flex-direction: column;
       padding: 16px;
       gap: 10px;
@@ -474,7 +477,7 @@
     }
     .search__select { flex: 1 1 100%; }
 
-    .block { padding: 32px 16px; }
+    .block { padding: 32px var(--pad-inline); }
     .block--alt { padding-top: 36px; }
     .block__title { font-size: 20px; margin-bottom: 20px; }
 
@@ -485,7 +488,7 @@
     .card { padding: 20px; }
     .step__img img { height: 190px; }
 
-    .foot { padding: 24px 16px; }
+    .foot { padding: 24px var(--pad-inline); }
     .foot__row { flex-direction: column; text-align: center; gap: 10px; }
   }
 

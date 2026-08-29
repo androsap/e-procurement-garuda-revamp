@@ -30,6 +30,8 @@
     --info-bg: #1A62A5;
     --error: #E23A2E;
     --success: #1E7B34;
+    /* full-bleed band, content centred within 1280px */
+    --pad-inline: max(40px, calc((100% - 1280px) / 2));
   }
   body {
     background: var(--bg);
@@ -44,9 +46,8 @@
   button { font-family: inherit; }
 
   .shell {
-    max-width: 1440px;
+    width: 100%;
     min-height: 100vh;
-    margin: 0 auto;
     background: #fff;
     overflow: hidden;
   }
@@ -59,7 +60,7 @@
     align-items: center;
     justify-content: flex-end;
     gap: 16px;
-    padding: 14px 36px;
+    padding: 14px var(--pad-inline);
     font-size: 12px;
     font-weight: 600;
   }
@@ -113,7 +114,7 @@
     display: flex;
     align-items: center;
     gap: 40px;
-    padding: 24px 36px;
+    padding: 24px var(--pad-inline);
     border-bottom: 1px solid var(--line);
     flex-wrap: wrap;
   }
@@ -169,11 +170,11 @@
 
   /* ---------- wizard ---------- */
   .wz__header {
-    padding: 28px 40px;
+    padding: 28px var(--pad-inline);
     border-bottom: 1px solid var(--line-soft);
   }
   .wz__header h1 { font-size: 22px; font-weight: 800; color: var(--ink); }
-  .wz__body { padding: 32px 40px 40px; }
+  .wz__body { padding: 32px var(--pad-inline) 40px; }
 
   .wz-steps { display: flex; gap: 5px; margin-bottom: 32px; }
   .wz-step {
@@ -319,7 +320,7 @@
   .foot {
     background: var(--navy-deep);
     color: #9FB0CC;
-    padding: 28px 40px;
+    padding: 28px var(--pad-inline);
     font-size: 13px;
   }
   .foot__row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center; }
@@ -330,8 +331,9 @@
 
   /* ================= TABLET ================= */
   @media (max-width: 1024px) {
-    .topbar { padding: 12px 24px; }
-    .masthead { gap: 16px; padding: 18px 24px; }
+    :root { --pad-inline: max(24px, calc((100% - 1280px) / 2)); }
+    .topbar { padding: 12px var(--pad-inline); }
+    .masthead { gap: 16px; padding: 18px var(--pad-inline); }
     .masthead__burger { display: flex; }
     .masthead__nav {
       order: 3;
@@ -352,8 +354,8 @@
     }
     .masthead__auth .btn { flex: 1; }
 
-    .wz__header { padding: 22px 24px; }
-    .wz__body { padding: 28px 24px 32px; }
+    .wz__header { padding: 22px var(--pad-inline); }
+    .wz__body { padding: 28px var(--pad-inline) 32px; }
     .wz-step { font-size: 14px; padding: 13px 14px 13px 22px; gap: 9px; }
     .wz-step__num { width: 26px; height: 26px; font-size: 13px; }
     .wz-info { padding: 22px 24px; }
@@ -363,13 +365,14 @@
 
   /* ================= MOBILE ================= */
   @media (max-width: 640px) {
-    .topbar { padding: 10px 16px; gap: 10px; font-size: 11px; justify-content: space-between; }
-    .masthead { padding: 16px; }
+    :root { --pad-inline: max(16px, calc((100% - 1280px) / 2)); }
+    .topbar { padding: 10px var(--pad-inline); gap: 10px; font-size: 11px; justify-content: space-between; }
+    .masthead { padding: 16px var(--pad-inline); }
     .masthead__logo img { height: 32px; }
 
-    .wz__header { padding: 18px 16px; }
+    .wz__header { padding: 18px var(--pad-inline); }
     .wz__header h1 { font-size: 19px; }
-    .wz__body { padding: 22px 16px 28px; }
+    .wz__body { padding: 22px var(--pad-inline) 28px; }
 
     .wz-steps { flex-direction: column; gap: 8px; margin-bottom: 26px; }
     .wz-step, .wz-step:first-child, .wz-step:last-child {
@@ -391,7 +394,7 @@
     .wz-actions { margin-top: 26px; }
     .btn-wz { padding: 12px 18px; }
 
-    .foot { padding: 24px 16px; }
+    .foot { padding: 24px var(--pad-inline); }
     .foot__row { flex-direction: column; text-align: center; gap: 10px; }
   }
 
